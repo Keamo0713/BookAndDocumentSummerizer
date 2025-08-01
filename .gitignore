@@ -1,0 +1,15 @@
+# Ignore system/dev environment folders
+.vs/
+node_modules/
+.env
+.DS_Store
+
+# Logs
+*.log
+
+# OS junk
+Thumbs.db
+
+# Optional
+__pycache__/
+*.pyc
