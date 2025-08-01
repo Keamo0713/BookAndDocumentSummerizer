@@ -8,3 +8,4 @@ elevenlabs
 pydantic
 gunicorn
 PyMuPDF
+python-multipart
