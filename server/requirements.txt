@@ -7,3 +7,4 @@ python-docx
 elevenlabs
 pydantic
 gunicorn
+PyMuPDF
