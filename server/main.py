@@ -1,4 +1,4 @@
-﻿from fastapi import FastAPI, UploadFile, File, Form
+from fastapi import FastAPI, UploadFile, File, Form
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 import io
@@ -90,6 +90,11 @@ def generate_audio(summary: str, language: str = "en", voice: str = ELEVENLABS_V
         return None
 
 # ----- API Endpoints -----
+
+# NEW: Root endpoint to provide a basic message
+@app.get("/")
+async def root():
+    return {"message": "Welcome to the LumiReads API! Use /summarize or /summarize_book endpoints."}
 
 @app.post("/summarize")
 async def summarize(file: UploadFile = File(...), language: str = Form("en")):
