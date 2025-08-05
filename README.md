@@ -1,7 +1,4 @@
-📄 README.md — Copy & Paste Below
-markdown
-Copy
-Edit
+
 # 📚 BookAndDocumentSummerizer
 
 BookAndDocumentSummerizer is a web-based application that allows users to **search books using the OpenLibrary API**, **upload PDF documents**, and receive **automated summaries** using AI. It provides a simple and user-friendly interface that helps users quickly understand books or documents without reading the entire text.
