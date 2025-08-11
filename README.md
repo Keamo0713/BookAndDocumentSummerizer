@@ -1,70 +1,172 @@
-# Getting Started with Create React App
+LumiReads
+LumiReads is a web application that enables users to search for books using the OpenLibrary API, generate summaries of book descriptions or uploaded documents (PDF/text) with the Gemini API, and create audio versions using the ElevenLabs API. The frontend is built with React, and the backend uses FastAPI, deployed on Render.
+Features
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Search for books by title with up to 10 results including titles, authors, and cover images.
+Generate text summaries and audio in multiple languages (English, French, Spanish, Afrikaans, Zulu).
+Upload PDF or text files for summarization and audio generation.
+Download summaries as .txt files and audio as .mp3 files.
+Responsive UI with gradient background and card-based layout.
 
-## Available Scripts
+Project Structure
+LumiReads/
+├── client/                # React frontend
+│   ├── src/
+│   │   ├── App.js         # Main React component
+│   │   └── ...            # Other React files
+│   ├── package.json
+│   └── ...
+├── server/                # FastAPI backend
+│   ├── main.py            # FastAPI application
+│   ├── requirements.txt   # Python dependencies
+│   ├── .env               # Environment variables (local use)
+│   └── ...
+├── render.yaml            # Render deployment configuration
+├── README.md              # This file
+└── .gitignore
 
-In the project directory, you can run:
+Prerequisites
 
-### `npm start`
+Node.js (v14 or higher)
+Python (3.8 or higher)
+npm (included with Node.js)
+pip (included with Python)
+Git (for version control)
+API keys for:
+Google Gemini API
+ElevenLabs API
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+A GitHub account and Render account for deployment.
 
-### `npm test`
+Setup Instructions
+1. Clone the Repository
+git clone https://github.com/Keamo0713/LumiReads.git
+cd LumiReads
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+2. Set Up the Backend
 
-### `npm run build`
+Navigate to the server directory:cd server
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Create a virtual environment and activate it:python -m venv venv
+.\venv\Scripts\Activate.ps1  # Windows
+source venv/bin/activate    # Linux/Mac
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+Install backend dependencies:pip install -r requirements.txt
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Create a .env file:echo "GEMINI_API_KEY=your_gemini_api_key" > .env
+echo "ELEVENLABS_API_KEY=your_elevenlabs_api_key" >> .env
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Replace with your actual API keys (not needed for Render deployment).
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+3. Set Up the Frontend
 
-## Learn More
+Navigate to the client directory:cd ../client
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Install frontend dependencies:npm install
 
-### Code Splitting
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-### Analyzing the Bundle Size
+4. Run Locally
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Start the backend:cd ../server
+uvicorn main:app --reload
 
-### Making a Progressive Web App
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Start the frontend (new terminal):cd ../client
+npm start
 
-### Advanced Configuration
+Open http://localhost:3000.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+5. Deploy on Render
 
-### Deployment
+Push changes to GitHub:git add .
+git commit -m "Update for deployment"
+git push origin main
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
 
-### `npm run build` fails to minify
+In Render Dashboard, create a Blueprint:
+Go to New > Blueprint.
+Connect https://github.com/Keamo0713/LumiReads.
+Select main branch.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+Set environment variables for lumireads-backend:
+GEMINI_API_KEY: Your Gemini API key.
+ELEVENLABS_API_KEY: Your ElevenLabs API key.
+
+
+Deploy. Access:
+Frontend: https://lumireads-frontend.onrender.com
+Backend: https://lumireads-backend.onrender.com
+
+
+
+Usage
+
+Open the frontend URL.
+Search Books: Enter a title (e.g., "Pride and Prejudice"), click "Search", then "Summarize" for a summary and audio.
+Upload Documents: Select a language, upload a PDF/text file, click "Summarize & Voice".
+Downloads: Click "Download TXT" or "Download MP3".
+
+Example Output
+
+Search: "Pride and Prejudice"
+Result: [{"title": "Pride and Prejudice", "author": "Jane Austen", "key": "/books/OL12345M", "cover_i": 12345}, ...]
+Summary: "Pride and Prejudice is a romantic novel..."
+Audio: MP3 narration.
+
+
+Upload: PDF chapter
+Summary: "The chapter describes..."
+Audio: MP3 narration.
+
+
+
+Troubleshooting
+
+Service Root Directory Missing:
+Ensure server directory is at repository root. Check with:dir
+
+
+Update Render Root Directory to server and redeploy.
+
+
+Build Fails on Render:
+Verify server/requirements.txt exists.
+Check Render logs in Dashboard.
+
+
+Frontend Connection Issues:
+Ensure REACT_APP_API_URL matches backend URL (e.g., https://lumireads-backend.onrender.com).
+Update CORS in main.py:app.add_middleware(CORSMiddleware, allow_origins=["https://lumireads-frontend.onrender.com"], allow_methods=["*"], allow_headers=["*"])
+
+
+
+
+API Key Errors:
+Confirm keys are set in Render Dashboard for lumireads-backend.
+
+
+Test Backend:curl "https://lumireads-backend.onrender.com/health"
+
+
+
+Security Notes
+
+Store API keys in Render’s Dashboard, not .env for deployment.
+Use HTTPS in production.
+Add .env to .gitignore.
+
+Contributing
+
+Fork the repository.
+Create a feature branch (git checkout -b feature/YourFeature).
+Commit changes (git commit -m "Add YourFeature").
+Push (git push origin feature/YourFeature).
+Open a pull request.
+
