@@ -1,3 +1,6 @@
+submodules:
+  - client
+
 services:
   - type: web
     name: lumireads-backend
@@ -20,13 +23,14 @@ services:
       name: lumireads-backend-disk
       mountPath: /app
       sizeGB: 1
- 
+
   - type: web
     name: lumireads-frontend
     env: node
     region: oregon
     plan: free
     buildCommand: |
+      cd client
       npm install
       npm run build
     startCommand: npm start
@@ -36,7 +40,7 @@ services:
       - key: REACT_APP_API_URL
         value: https://lumireads-backend.onrender.com
     autoDeploy: true
-    staticPublishPath: build
+    staticPublishPath: client/build
     healthCheckPath: /
     disk:
       name: lumireads-frontend-disk
