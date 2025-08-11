@@ -41,7 +41,7 @@ A GitHub account and Render account for deployment.
 
 Setup Instructions
 1. Clone the Repository
-git clone https://github.com/Keamo0713/LumiReads.git
+git clone [https://github.com/Keamo0713/LumiReads.git](https://github.com/Keamo0713/BookAndDocumentSummerizer)
 cd LumiReads
 
 2. Set Up the Backend
